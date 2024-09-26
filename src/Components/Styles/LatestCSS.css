@@ -1,20 +1,3 @@
-.work-item-content h3 {
-  margin: 10px 0;
-  font-size: 20px; /* Mengecilkan ukuran title */
-}
-
-.work-item-card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for card effect */
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 300px;
-  margin: 20px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-}
 .latest-work-title {
   font-size: 2.5em;
   font-weight: bold;
@@ -40,7 +23,6 @@
   margin: 1px; /* Reduced margin to make photos closer */
   padding: 5px;
   text-align: left;
- 
 }
 
 .work-image {

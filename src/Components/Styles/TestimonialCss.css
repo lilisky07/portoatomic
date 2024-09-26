@@ -43,6 +43,7 @@
     gap: 16px;
     width: 310.67px;
     height: 88px;
+    text-align: left;
   }
   
   /* Testimonial Photo */
@@ -68,6 +69,7 @@
     font-size: 20px;
     line-height: 30px;
     color: #2D2D2D;
+    text-align: left;
   }
   
   /* Testimonial Rating */

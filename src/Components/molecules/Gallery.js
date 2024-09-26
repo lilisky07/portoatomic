@@ -1,15 +1,15 @@
 import React from 'react';
-import image from '../atoms/Image';
-import Title from '../atoms/Title';
-import Description from '../atoms/Description';
+import Image from '../atoms/Image'; // Import the Image component
+import Title from '../atoms/Title'; // Import the Title component
+import Description from '../atoms/Description'; // Import the Description component
 import '../Styles/LatestCSS.css'; // Import CSS for work item styling
 
-const WorkItem = ({ image, title, description }) => {
+const WorkItem = ({ imageUrl, title, description }) => {
   return (
     <div className="work-item">
-      <img src={image} alt={title} className="work-image" />
-      <Title text={title} level={3} className="work-title" />
-      <p className="work-description">{description}</p>
+      <Image src={imageUrl} alt={title} className="work-image" /> {/* Correctly using Image component */}
+      <Title text={title} level={3} className="work-title" /> {/* Correctly using Title component */}
+      <Description text={description} className="work-description" /> {/* Use Description component */}
     </div>
   );
 };

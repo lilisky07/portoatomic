@@ -1,20 +1,22 @@
 import React from 'react';
-import Image from '../atoms/Image'; // Import the Image component
-import Text from '../atoms/Text'; // Import the Text component for testimonial text
-import Title from '../atoms/Title'; // Import the Title component for the name
-import Rating from '../atoms/Rating'; // Import the Rating component for displaying the rating
-import '../Styles/TestimonialCss.css'; // Import the CSS file
+import Title from '../atoms/Title'; // Import your Title atom
+import Description from '../atoms/Description'; // Import your Description atom
+import '../Styles/TestimonialCss.css'; // Ensure appropriate CSS is imported
 
 const TestimonialCard = ({ text, name, rating, image }) => {
   return (
     <div className="testimonial-card">
-      <Text content={text} className="testimonial-text" />
+      <div className="testimonial-text">
+        <Description text={text} className="testimonial-description" />
+      </div>
       <div className="testimonial-info">
-        <Image src={image} alt={`${name}'s photo`} className="testimonial-photo" />
+        <img src={image} alt={`${name}'s photo`} className="testimonial-photo" />
         <div className="testimonial-details">
-          <Rating value={rating} /> {/* Use the Rating component */}
-          <Title text={name} level={4} className="testimonial-name" />
-          <Text content="Google" className="testimonial-google" />
+          <div className="testimonial-rating">
+            {'★'.repeat(rating)} {/* Displays stars based on rating */}
+          </div>
+          <Title text={name} level={4} className="testimonial-name" /> {/* Use Title atom for name */}
+          <p className="testimonial-source">Google</p> {/* Source can be adjusted or removed */}
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import '../Styles/TestimonialCss.css'; // Import the CSS file
 import TestimonialCard from '../molecules/Testimonial'; // Import the TestimonialCard molecule
 
-const testimonials = [
+const testimonials = [ 
   {
     id: 1,
     text: "Layanan luar biasa dan sangat profesional. Selalu memuaskan!",

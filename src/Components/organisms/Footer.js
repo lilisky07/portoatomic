@@ -17,7 +17,27 @@ const Footer = () => {
           {/* Left Side - FooterCard */}
           <div className="col-lg-6 col-md-12 footer-left">
             <FooterCard 
+              title="Let's work together"
+              description="If you’re interested in working together or just want to say hello, feel free to get in touch."
             />
+            {/* Social Media Icons */}
+            <div className="social-icons">
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                <img src="/facebook.png" alt="Facebook" className="social-icon" />
+              </a>
+              <a href="https://www.dribbble.com" target="_blank" rel="noopener noreferrer">
+                <img src="/dribbble.png" alt="Dribbble" className="social-icon" />
+              </a>
+              <a href="https://www.behance.com" target="_blank" rel="noopener noreferrer">
+                <img src="/behance.png" alt="Behance" className="social-icon" />
+              </a>
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                <img src="/nstagram.png" alt="Instagram" className="social-icon" />
+              </a>
+              <a href="https://www.discord.com" target="_blank" rel="noopener noreferrer">
+                <img src="/discord.png" alt="Discord" className="social-icon" />
+              </a>
+            </div>
           </div>
 
           {/* Right Side - Form */}
