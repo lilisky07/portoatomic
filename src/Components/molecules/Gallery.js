@@ -7,7 +7,7 @@ import '../Styles/LatestCSS.css'; // Import CSS for work item styling
 const WorkItem = ({ imageUrl, title, description }) => {
   return (
     <div className="work-item">
-      <Image src={imageUrl} alt={title} className="work-image" /> {/* Correctly using Image component */}
+      <Image src={imageUrl} alt={title} className="work-imamge" /> {/* Correctly using Image component */}
       <Title text={title} level={3} className="work-title" /> {/* Correctly using Title component */}
       <Description text={description} className="work-description" /> {/* Use Description component */}
     </div>
