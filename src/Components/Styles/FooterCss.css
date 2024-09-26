@@ -1,0 +1,72 @@
+.custom-footer {
+    background-color: #ffffff; /* Light background */
+    padding: 40px 0;
+  }
+  
+  .footer-title {
+    font-size: 29px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .footer-description {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .social-icon i {
+    font-size: 20px;
+    color: #333;
+    transition: color 0.3s;
+  }
+  
+  .social-icon:hover i {
+    color: #007bff; /* Change color on hover */
+  }
+  
+  .footer-right .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .footer-form .form-control {
+    border-radius: 0;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    background-color: #e8e8e8;
+  }
+  
+  .footer-form .btn {
+    background-color: #252526;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 500;
+    cursor: pointer;
+  }
+  
+  .footer-form .btn:hover {
+    background-color: #666666; /* Darken button on hover */
+  }
+  
+  .footer-left,
+  .footer-right {
+    margin-bottom: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-left,
+    .footer-right {
+      text-align: center;
+    }
+  
+    .footer-right {
+      margin-top: 20px;
+    }
+    
+  }
+  

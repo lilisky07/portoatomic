@@ -1,0 +1,103 @@
+/* General layout for the header */
+.custom-header {
+    background: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 42px 24px;
+    gap: 42px 68px;
+    width: 1280px;
+    height: 444px;
+    position: absolute;
+    left: 20px;
+    top: 24px;
+    
+  }
+  
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 48px;
+    width: 620px;
+    min-width: 320px;
+    max-width: 620px;
+    height: 328px;
+  }
+  
+  /* Branding text */
+  .branding-text {
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 30px;
+    color: #2D2D2D;
+    width: 620px;
+    height: 30px;
+    text-align: left;
+  }
+  
+  /* Visual Designer title */
+  .visual-designer-title {
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 600;
+    font-size: 70px;
+    line-height: 70px;
+    color: #2D2D2D;
+    width: 620px;
+    height: 70px;
+    margin: 0;
+    
+  }
+  
+  /* Description text */
+  .description-text {
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+    color: #2D2D2D;
+    width: 620px;
+    height: 54px;
+    margin: 0;
+  }
+  
+  /* Custom button styling */
+  .custom-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 64px;
+    gap: 10px;
+    width: 211px;
+    height: 78px;
+    background: #2D2D2D;
+    color: #FFFFFF;
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .custom-button:hover {
+    background: #1a1a1a; /* Darken on hover */
+  }
+  
+  /* Right Section: Image */
+  .header-image {
+    width: 480px;
+    min-width: 320px;
+    max-width: 480px;
+    height: 360px;
+  }
+  
+  .header-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  

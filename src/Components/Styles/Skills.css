@@ -1,0 +1,29 @@
+.skills-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 40px;
+  text-align: center;
+}
+
+.skill {
+  flex: 1;
+  max-width: 300px;
+  margin: 20px;
+}
+
+.skill-icon {
+  width: 124px;
+  height: 124px;
+  margin-bottom: 20px;
+}
+
+.skill-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.skill-description {
+  font-size: 16px;
+  color: #666;
+}

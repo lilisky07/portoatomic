@@ -1,0 +1,88 @@
+/* Testimonial Section */
+.testimonial-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 42px;
+    gap: 68px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Testimonial Card */
+  .testimonial-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 42px;
+    gap: 68px;
+    width: 394.67px;
+    min-width: 320px;
+    height: 330px;
+    background: #F3F3F3;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  /* Testimonial Text */
+  .testimonial-text {
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: #2D2D2D;
+    margin-bottom: 10px;
+    align-self: stretch;
+  }
+  
+  /* Testimonial Info */
+  .testimonial-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    width: 310.67px;
+    height: 88px;
+  }
+  
+  /* Testimonial Photo */
+  .testimonial-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  /* Testimonial Details */
+  .testimonial-details {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    flex-grow: 1;
+  }
+  
+  /* Testimonial Name */
+  .testimonial-name {
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: #2D2D2D;
+  }
+  
+  /* Testimonial Rating */
+  .testimonial-rating {
+    display: flex;
+    font-size: 20px;
+    color: #f39c12;
+  }
+  
+  /* Google Text */
+  .testimonial-google {
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 27px;
+    color: #2D2D2D;
+  }
+  

@@ -1,0 +1,53 @@
+.custom-navbar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 42px;
+    gap: 24px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adding a soft drop shadow */
+    position: fixed;
+    width: 100%;                                /* Makes sure it spans the full width */
+    z-index: 1000;                              /* Ensures it stays on top of other content */
+    padding: 10px 1;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .custom-navbar .nav-link {
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    color: #2D2D2D;
+    padding: 0 10px; /* Adjust padding if needed */
+    transition: border-bottom 0.3s ease;
+  }
+
+  .custom-navbar .nav-link:hover {
+    border-bottom: 2px solid #2D2D2D; /* Garis bawah saat hover */
+  }
+  
+  .custom-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 24px;
+  }
+  
+  /* Adjust styles for the hamburger menu if necessary */
+  .navbar-toggler-icon {
+    background-image: none; /* Remove default icon */
+  }
+  
+  /* Optional: Adjust styles for the toggle button if needed */
+  .navbar-toggler {
+    border: none;
+  }
+  
