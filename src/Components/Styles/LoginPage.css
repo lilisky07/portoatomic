@@ -1,0 +1,21 @@
+/* LoginPage.css */
+
+/* Center the login card */
+.login-card {
+    position: relative; /* Use relative positioning for card */
+    width: 400px; /* Set a practical width for the card */
+    height: auto; /* Auto height to adjust based on content */
+    background-color: white; /* Background color for the card */
+    border-radius: 8px; /* Rounded corners */
+  }
+  
+  /* Optional: Add a shadow to the card for a floating effect */
+  .login-card.shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Optional: Center content in the card */
+  .login-card h2 {
+    margin-bottom: 20px; /* Space below the title */
+  }
+  
