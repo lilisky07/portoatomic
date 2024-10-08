@@ -1,89 +1,104 @@
 import React, { useState, useEffect } from 'react';
-import "../Styles/Sektoral.css"; // Pastikan Anda memiliki file CSS untuk styling
+import "../Styles/Sektoral.css"; // Ensure your CSS is included
 
 const Sektoral = () => {
-  const [opds, setDataOPD] = useState([]);
-  const [urusans, setDataUrusan] = useState([]);
-  const [loading, setLoading] = useState(true); // State untuk loading status
-  const [error, setError] = useState(null);
-  const [selectedOPD, setSelectedOPD] = useState(null);
-  const [selectedUrusan, setselectedUrusan] = useState(null);
-  const [DariTahun, setDariTahun] = useState(null);
-  const [SampaiTahun, setSampaiTahun] = useState(null);
-  const [results, setResults] = useState([]); // State untuk menyimpan hasil pencarian
+  const [opds, setDataOPD] = useState([]);  // Data for OPD
+  const [urusans, setDataUrusan] = useState([]);  // Data for Urusan
+  const [loading, setLoading] = useState(true);  // Loading state
+  const [error, setError] = useState(null);  // Error state
+  const [selectedOPD, setSelectedOPD] = useState(null);  // Selected OPD
+  const [selectedUrusan, setSelectedUrusan] = useState(null);  // Selected Urusan
+  const [DariTahun, setDariTahun] = useState("");  // Year range start
+  const [SampaiTahun, setSampaiTahun] = useState("");  // Year range end
+  const [results, setResults] = useState([]);  // Search results
 
+  // Fetch OPD data on component mount
   useEffect(() => {
-    // Fungsi untuk fetch data menggunakan fetch API
     const fetchDataOPD = async () => {
       try {
-        const response = await fetch("http://116.206.212.234:4000/list-opd"); // Mengambil data dari API
+        const response = await fetch("http://116.206.212.234:4000/list-opd");
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Failed to fetch OPD data');
         }
         const data = await response.json();
-        setDataOPD(data); // Set data dari response
+        setDataOPD(data);
       } catch (error) {
-        setError(error); // Set error jika terjadi kesalahan
+        setError(error.message);
       } finally {
-        setLoading(false); // Hentikan loading
+        setLoading(false);
       }
     };
 
     fetchDataOPD();
-
-    const fetchDataUrusan = async () => {
-      try {
-        const response = await fetch("http://116.206.212.234:4000/list-opd/urusan"); // Mengambil data dari API
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setDataUrusan(data); // Set data dari response
-      } catch (error) {
-        setError(error); // Set error jika terjadi kesalahan
-      } finally {
-        setLoading(false); // Hentikan loading
-      }
-    };
-
-    fetchDataUrusan();
   }, []);
 
+  // Function to fetch Urusan based on selected OPD
+  const handleOPDChange = async (e) => {
+    const opdId = e.target.value;  // Get selected OPD id
+    setSelectedOPD(opdId);  // Set selected OPD
+    setSelectedUrusan("");  // Reset Urusan
+    setLoading(true);
+
+    if (opdId) {
+      try {
+        const response = await fetch(
+          `http://116.206.212.234:4000/data-sektoral/list-urusan-by-id-opd?id_user_opd=${opdId}`
+        );
+        if (!response.ok) {
+          throw new Error('Failed to fetch urusan');
+        }
+        const data = await response.json();
+        setDataUrusan(data);  // Update Urusan dropdown based on selected OPD
+        setError(null);
+      } catch (error) {
+        setError("Gagal mengambil data urusan.");
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      setDataUrusan([]);  // Clear Urusan if no OPD is selected
+      setLoading(false);
+    }
+  };
+
+  // Handle the search submission
   const handleSearch = async (e) => {
-    e.preventDefault(); // Mencegah reload halaman saat form disubmit
-    setLoading(true); // Set loading saat fetching data
+    e.preventDefault();
+    setLoading(true);
 
     try {
-        const baseUrl = 'http://116.206.212.234:4000/data-sektoral';
-        const params = {
-            id_user_opd: selectedOPD, // Parameter OPD yang dipilih
-            kode_urusan: selectedUrusan, // Parameter urusan yang dipilih
-            dari_tahun: DariTahun, // Parameter dari tahun
-            sampai_tahun: SampaiTahun, // Parameter sampai tahun
-        };
-    
-        const response = await fetch(`${baseUrl}?${new URLSearchParams(params)}`);
-        if (!response.ok) throw new Error('Failed to fetch data');
-    
-        const data = await response.json();
-        setResults(data); // Set fetched data to results
-        setError(null); // Clear any previous errors
-      } catch (error) {
-        setError("Terjadi kesalahan saat mengambil data."); // Set error message
-        // Optionally show alert
-        // Swal.fire("Error", "Terjadi kesalahan saat mengambil data", "error");
-      } finally {
-        setLoading(false); // Stop loading after fetch completes
-      }
+      const baseUrl = 'http://116.206.212.234:4000/data-sektoral';
+      const params = {
+        id_user_opd: selectedOPD,
+        kode_urusan: selectedUrusan,
+        dari_tahun: DariTahun,
+        sampai_tahun: SampaiTahun,
+      };
+
+      const response = await fetch(`${baseUrl}?${new URLSearchParams(params)}`);
+      if (!response.ok) throw new Error('Failed to fetch data');
+
+      const data = await response.json();
+      setResults(data);  // Set the results from the API
+      setError(null);
+    } catch (error) {
+      setError("Terjadi kesalahan saat mengambil data."); 
+    } finally {
+      setLoading(false);
     }
+  };
 
   return (
     <div className="sektoral-container">
       <div className="sektoral-box">
         <h2 className="sektoral-title">Data Sektoral</h2>
         <form className="sektoral-form" onSubmit={handleSearch}>
-          {/* Elemen select untuk menampilkan data dari API */}
-          <select className="sektoral-input" onChange={(e) => setSelectedOPD(e.target.value)}>
+          {/* Dropdown for OPD */}
+          <select
+            className="sektoral-input"
+            onChange={handleOPDChange}  // Fetch Urusan based on OPD
+            value={selectedOPD || ""}
+          >
             <option value="">Pilih OPD</option>
             {opds.map((OPD) => (
               <option key={OPD.id_opd} value={OPD.id_opd}>
@@ -91,7 +106,14 @@ const Sektoral = () => {
               </option>
             ))}
           </select>
-          <select className="sektoral-input" onChange={(e) => setselectedUrusan(e.target.value)}>
+
+          {/* Dropdown for Urusan */}
+          <select
+            className="sektoral-input"
+            onChange={(e) => setSelectedUrusan(e.target.value)}  // Set selected Urusan
+            value={selectedUrusan || ""}
+            disabled={!selectedOPD}  // Disable Urusan if no OPD selected
+          >
             <option value="">Pilih Urusan</option>
             {urusans.map((Urusan) => (
               <option key={Urusan.kode_urusan} value={Urusan.kode_urusan}>
@@ -99,6 +121,8 @@ const Sektoral = () => {
               </option>
             ))}
           </select>
+
+          {/* Input fields for year range */}
           <input
             className="sektoral-input"
             type="number"
@@ -121,16 +145,16 @@ const Sektoral = () => {
         </form>
       </div>
 
-      {/* Tabel hasil pencarian */}
+      {/* Results table */}
       <div className="result-container">
         {loading ? (
           <p>Loading...</p>
         ) : error ? (
-          <p>Error: {error.message}</p>
+          <p>Error: {error}</p>
         ) : (
           <table className="result-table">
             <thead>
-            <tr>
+              <tr>
                 <th>No</th>
                 <th>Uraian DSSD</th>
                 <th>Satuan</th>
