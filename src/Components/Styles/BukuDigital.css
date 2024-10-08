@@ -1,0 +1,47 @@
+.buku-digital-container {
+  margin-top: 50px;
+}
+
+.buku-digital-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.table {
+  border-radius: 20px; /* Rounded corners */
+  overflow: hidden; /* Ensure the corners are rounded */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.table th,
+.table td {
+  vertical-align: middle; /* Center content vertically */
+}
+
+.table thead th {
+  background-color: #343a40; /* Dark background for the header */
+  color: white; /* White text for the header */
+}
+
+.table tbody tr {
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa; /* Light background on hover */
+}
+
+.pdf-button {
+  border-radius: 50px; /* Elliptical button */
+  padding: 10px 20px; /* Padding for the button */
+  color: white; /* White text */
+  background-color: #007bff; /* Bootstrap primary color */
+  border: none; /* Remove border */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.pdf-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}

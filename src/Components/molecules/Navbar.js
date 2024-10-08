@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import Links from '../atoms/Links';
 import Button from '../atoms/Button'; // Import the button component for logout
 import '../Styles/NavbarCss.css';
@@ -14,8 +15,10 @@ const NavLinks = () => {
     <div className="d-flex justify-content-end align-items-center w-100 custom-nav-container">
       {/* Navigation Links */}
       <ul className="navbar-nav d-flex flex-row align-items-center me-3 custom-nav">
-        <Links className="nav-link" href="#about" label="About" />
-        <Links className="nav-link" href="#work" label="Work" />
+        <li className="nav-item">
+          <Link className="nav-link" to="/sektoral">Sektoral</Link> {/* Updated link */}
+        </li>
+        <Link className="nav-link" to="/bukudigital">Buku Digital</Link> {/* Updated link */}    
         <Links className="nav-link" href="#contact" label="Contact" />
       </ul>
       {/* Logout Button */}

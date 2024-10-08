@@ -8,8 +8,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg custom-navbar">
       <div className="container">
-        <Logo />
-        
+        <Logo />  
         <div className="collapse navbar-collapse" id="navbarNav">
           <NavLinks />
         </div>

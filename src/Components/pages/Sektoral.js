@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Navbar from '../organisms/Navbar';
 import "../Styles/Sektoral.css"; // Ensure your CSS is included
 
 const Sektoral = () => {
@@ -89,6 +90,9 @@ const Sektoral = () => {
   };
 
   return (
+    <div>
+      {/* Navbar di bagian atas */}
+     <Navbar />
     <div className="sektoral-container">
       <div className="sektoral-box">
         <h2 className="sektoral-title">Data Sektoral</h2>
@@ -144,6 +148,7 @@ const Sektoral = () => {
           </button>
         </form>
       </div>
+      
 
       {/* Results table */}
       <div className="result-container">
@@ -175,6 +180,7 @@ const Sektoral = () => {
         )}
       </div>
     </div>
+    </div> 
   );
 };
 

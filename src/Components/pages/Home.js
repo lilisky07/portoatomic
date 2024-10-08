@@ -3,8 +3,7 @@ import MainLayout from '../templates/MainLayout';
 
 const HomePage = () => {
   return (
-    <MainLayout>
-    
+    <MainLayout>   
     </MainLayout>
   );
 };

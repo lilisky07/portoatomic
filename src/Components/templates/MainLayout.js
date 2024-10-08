@@ -11,7 +11,6 @@ const MainLayout = ({ children }) => {
     <div>
       {/* Navbar di bagian atas */}
       <Navbar />
-
       {/* Konten halaman */}
       <main>
      <Header/>

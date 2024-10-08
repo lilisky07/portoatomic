@@ -5,25 +5,22 @@ body {
     padding: 0;
   }
   
+  .sektoral-title {
+    margin-top: 10px; /* Adjust margin to position relative to navbar */
+    font-size: 24px; /* Match the font size with navbar title if applicable */
+    text-align: center; /* Center align the title */
+    color: #333; /* Match color with the navbar text color */
+  }
+  
+  /* Additional styles to ensure the layout is responsive */
   .sektoral-container {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #fff;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
+    padding: 20px; /* Add padding to the container */
   }
   
   .sektoral-box {
-    text-align: center;
-    padding-bottom: 20px;
+    margin-top: 70px; /* Spacing between title and form */
   }
   
-  .sektoral-title {
-    font-size: 1.8rem;
-    color: #333;
-    margin-bottom: 20px;
-  }
   
   .sektoral-form {
     display: flex;
