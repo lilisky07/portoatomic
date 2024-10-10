@@ -1,29 +1,76 @@
 .skills-container {
   display: flex;
   justify-content: space-around;
-  padding: 40px;
-  text-align: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  background-color: white;
+  margin-bottom: 80px;
 }
 
 .skill {
-  flex: 1;
-  max-width: 300px;
-  margin: 20px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 40px; /* Rounded corners for ellipse effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 400px;
+  height: 300px; /* Ensure a fixed height so content can be centered vertically */
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Align elements vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.skill:hover {
+  transform: scale(1.05);
+  background-color: #f44b4b;
+  color: white; /* Text turns white on hover */
+}
+
+.skill:hover .skill-title,
+.skill:hover .skill-description {
+  color: white;
 }
 
 .skill-icon {
-  width: 124px;
-  height: 124px;
-  margin-bottom: 20px;
-}
-
-.skill-title {
-  font-size: 24px;
-  font-weight: 600;
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
   margin-bottom: 10px;
 }
 
+.skill-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
 .skill-description {
-  font-size: 16px;
+  font-size: 14px;
   color: #666;
+  transition: color 0.3s ease;
+}
+
+.skills-section {
+  margin-top: 0px; /* Adjust for spacing */
+  padding: 20px;
+  background-color: #fff; /* Set background to white */
+  border-radius: 10px; /* Optional: adds rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.skills-title {
+  margin-top: 100px;
+  font-size: 2.5em;
+  font-weight: bold;
+  text-align: center; /* Centers the text horizontally */
+  margin-bottom: 30px;
+  color: #333;
 }

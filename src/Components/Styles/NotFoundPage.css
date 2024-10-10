@@ -1,0 +1,61 @@
+/* Styling for the 404 Page */
+.not-found-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 0 50px;
+  background-color: #f0f0f0;
+}
+
+.not-found-content {
+  max-width: 50%;
+  text-align: left;
+}
+
+.not-found-content h1 {
+  font-size: 4rem;
+  color: #000;
+  margin: 0;
+  font-weight: bold;
+}
+
+.not-found-content p {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 20px 0;
+}
+
+.home-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.not-found-image {
+  max-width: 45%;
+}
+
+.not-found-image img {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .not-found-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .not-found-content {
+    max-width: 100%;
+  }
+
+  .not-found-image {
+    max-width: 70%;
+  }
+}

@@ -1,0 +1,9 @@
+/* Styles for the header image */
+.header-image {
+    width: 110%; /* Make the image responsive */
+    max-width: 700px; /* Set a maximum width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Rounded corners */
+    margin-top: 100px; /* Add top margin */
+  }
+  

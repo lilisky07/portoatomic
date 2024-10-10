@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Branding from '../molecules/Header';
+import '../Styles/HeaderImage.css';
 
 const Header = () => {
   return (
@@ -14,26 +15,17 @@ const Header = () => {
             </div>
 
             {/* Right Section: Image */}
-            <div className="col-md-6" style={{ paddingLeft: '150px', marginTop: '60px' }}>
+            <div className="col-md-6" style={{ paddingLeft: '140px' }}>
               <img
               src= './HeaderImage.png' // Ganti dengan path gambar yang benar
                 alt="Header"
-                className="img-fluid"
+                className="img-fluid header-image"
                 style={{ borderRadius: '10px' }}
               />
             </div>
           </div>
         </div>
       </header>
-
-      {/* Logo Bar Section */}
-      <div className="logo-bar mt-5" style={{ width: '1280px', height: '121px', margin: '0 auto' }}>
-        <img 
-          src='./LogoBar.png' // Ganti dengan path gambar yang benar
-          alt="LogoBar"
-          style={{ width: '100%', height: '100%', marginBottom: '30px' }} // Memastikan gambar memenuhi ukuran yang ditentukan
-        />
-      </div>
     </>
   );
 };

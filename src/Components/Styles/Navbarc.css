@@ -6,7 +6,6 @@
   padding: 10px 42px; /* Sesuaikan padding */
   gap: 24px;
   background-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft drop shadow */
   position: fixed;
   width: 100%; /* Memastikan navbar memenuhi lebar */
   z-index: 1000; /* Agar tetap di atas konten lain */
@@ -22,9 +21,14 @@
   font-family: 'Epilogue', sans-serif;
   font-weight: 400;
   font-size: 17px;
-  color: #2D2D2D;
+  color: #b5b5b5;
   padding: 0 10px; /* Padding horizontal untuk link */
   transition: border-bottom 0.3s ease;
+}
+
+.custom-navbar .nav-link.active {
+  color: #dc3545; /* Red color for active link */
+  border-bottom: 2px solid #dc3545; /* Optional: underline for active link */
 }
 
 .custom-navbar .nav-link:hover {
@@ -47,4 +51,11 @@
 /* Toggle button styles */
 .navbar-toggler {
   border: none; /* Menghapus border */
+}
+.navbar-nav .nav-link:hover {
+  color: #dc3545; /* Warna hover */
+}
+
+.navbar-nav .nav-link.active {
+  color: #dc3545; /* Warna merah untuk link aktif */
 }

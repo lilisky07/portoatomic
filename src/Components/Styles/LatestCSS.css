@@ -12,11 +12,12 @@
 
 /* Gallery Section */
 .latest-work-container {
-  display: flex;
+  display: flex; 
   flex-wrap: wrap;
   justify-content: space-around; /* Adjust spacing between items */
   padding: 50px;
   gap: 1px; /* This adds small, consistent gaps between rows */
+background-color: white;
 }
 
 .work-item {

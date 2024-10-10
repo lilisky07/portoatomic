@@ -43,8 +43,8 @@ const LatestWork = () => {
 
   return (
     <div>
-      <h2 className="latest-work-title">Latest Work</h2> {/* Title added here */}
       <div className="latest-work-container">
+      <h2 className="latest-work-title">Latest Work</h2> {/* Title added here */}
         {works.map((work) => (
           <div key={work.id} className="work-item">
             <img src={work.imageUrl} alt={work.title} className="work-image" />

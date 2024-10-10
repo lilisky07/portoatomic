@@ -1,8 +1,13 @@
-.buku-digital-container {
-  margin-top: 50px;
+.sektoral-box {
+  margin-top: 70px; /* Spacing between title and form */
+}
+
+.box-container p-4 {
+  margin-top: 500px;
 }
 
 .buku-digital-title {
+  margin-top: 70px;
   text-align: center;
   margin-bottom: 30px;
   font-size: 2rem;
@@ -17,7 +22,7 @@
 
 .table th,
 .table td {
-  vertical-align: middle; /* Center content vertically */
+  vertical-align: center; /* Center content vertically */
 }
 
 .table thead th {

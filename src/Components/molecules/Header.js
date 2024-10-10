@@ -6,11 +6,11 @@ import '../Styles/HeaderCss.css';
 
 const Branding = () => {
   return (
-    <div style={{ paddingLeft: '80px', marginTop: '50px' , textAlign: 'left'}}>
-      <Text content="Branding | 3D Making" size="18px" />
+    <div className="branding-container">
+      <Text content="Branding | 3D Making" className="text" />
       <Title text="Visual Designer" level={1} className="visual-designer-title" />
-      <Text content="We create amazing solutions for your business." size="16px" />
-      <Button label="Contact Us" />
+      <Text content="We create amazing solutions for your business." className="text" />
+      <Button label="Contact Us" className="btn btn-dark mt-3" />
     </div>
   );
 };
