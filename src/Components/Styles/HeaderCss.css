@@ -1,39 +1,36 @@
-/* Container for branding */
-.branding-container {
-  padding-left: 80px;
-  margin-top: 50px;
+.branding-header {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.welcome-title {
+  font-size: 2.3rem;
+  font-weight: bold;
+  line-height: 1.4;
+  text-align:  left;
+}
+
+.city-name {
+  color: #d32f2f; /* Warna merah mirip seperti pada gambar */
   text-align: left;
 }
 
-/* Title styling */
-.visual-designer-title {
-  font-family: 'Poppins', sans-serif; /* Poppins font */
-  font-size: 4rem; /* Larger font size for visual impact */
-  font-weight: 600; /* Bold text */
-  color: #333; /* Darker text color */
-  margin-bottom: 20px;
+.description-text {
+  font-size: 0.8rem;
+  color: #6c757d; /* Warna abu-abu ringan */
+  margin-top: 1rem;
+  text-align: left;
 }
 
-/* Text styling */
-.branding-container .text {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.50rem; /* Slightly larger text */
-  color: #555; /* Light color for text */
-  margin-bottom: 15px;
-}
-
-/* Button styling */
-.branding-container .btn {
-  font-family: 'Poppins', sans-serif;
-  padding: 10px 20px;
+button.btn-danger {
   font-size: 1rem;
-  background-color: rgb(0, 0, 0); /* Example color */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  align-items: left;
 }
 
-.branding-container .btn:hover {
-  background-color: rgb(38, 38, 38);
+.button-container {
+  display: flex;
+  justify-content: flex-start; /* Geser tombol ke kiri */
 }

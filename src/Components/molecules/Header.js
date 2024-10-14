@@ -1,16 +1,22 @@
 import React from 'react';
-import Text from '../atoms/Text.js';
-import Title from '../atoms/Title.js';
-import Button from '../atoms/Button.js';
-import '../Styles/HeaderCss.css';
+import '../Styles/HeaderCss.css'; // Pastikan file CSS ada
 
 const Branding = () => {
   return (
-    <div className="branding-container">
-      <Text content="Branding | 3D Making" className="text" />
-      <Title text="Visual Designer" level={1} className="visual-designer-title" />
-      <Text content="We create amazing solutions for your business." className="text" />
-      <Button label="Contact Us" className="btn btn-dark mt-3" />
+    <div className="branding-header text-center py-5">
+      <h1 className="welcome-title">
+        Selamat Datang di Satu Data Kota <br />
+        <span className="city-name">Bandar Lampung</span>
+      </h1>
+      <p className="description-text mt-3">
+        "Platform yang menyajikan informasi data statistik sektoral yang pemanfaatannya ditujukan untuk memenuhi kebutuhan instansi pemerintah tertentu dalam rangka penyelenggaraan tugas-tugas pemerintah dan tugas
+        pembangunan yang merupakan tugas pokok instansi pemerintah yang bersangkutan."
+      </p>
+      <div className="button-container mt-4">
+        <button className="btn btn-danger custom-button">
+          Cari Semua Datasets →
+        </button>
+      </div>
     </div>
   );
 };

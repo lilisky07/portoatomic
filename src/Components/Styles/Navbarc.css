@@ -28,7 +28,7 @@
 
 .custom-navbar .nav-link.active {
   color: #dc3545; /* Red color for active link */
-  border-bottom: 2px solid #dc3545; /* Optional: underline for active link */
+  /* border-bottom: 2px solid #dc3545; Optional: underline for active link */
 }
 
 .custom-navbar .nav-link:hover {

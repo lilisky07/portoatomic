@@ -2,12 +2,12 @@
   margin-top: 70px; /* Spacing between title and form */
 }
 
-.box-container p-4 {
+.container py-5 {
   margin-top: 500px;
 }
 
-.buku-digital-title {
-  margin-top: 70px;
+.text-center {
+  margin-top: 50px;
   text-align: center;
   margin-bottom: 30px;
   font-size: 2rem;

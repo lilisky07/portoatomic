@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import "../Styles/BukuDigital.css"; // Ensure you have a CSS file for additional styling
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import "../Styles/BukuDigital.css"; // Pastikan Anda memiliki file CSS tambahan
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import CSS Bootstrap
 import { Document, Page, pdfjs } from 'react-pdf';
 
-// Set the workerSrc for PDF.js to the locally installed worker
+// Set workerSrc untuk PDF.js ke worker yang diinstal secara lokal
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js`;
 
 const BukuDigital = () => {
   const [bukuList, setBukuList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedBook, setSelectedBook] = useState(null); // State for the selected book
-  const [numPages, setNumPages] = useState(null); // Track the number of pages in the PDF
+  const [selectedBook, setSelectedBook] = useState(null); // Buku yang dipilih
+  const [numPages, setNumPages] = useState(null); // Jumlah halaman PDF
 
-  // Fetch data when the component mounts
+  // Fetch data ketika komponen mount
   useEffect(() => {
     const fetchBukuDigital = async () => {
       try {
-        const response = await fetch("http://116.206.212.234:4000/buku-digital"); // Fetch data from the API
-        if (!response.ok) {
-          throw new Error('Failed to fetch buku digital data');
-        }
+        const response = await fetch("http://116.206.212.234:4000/buku-digital");
+        if (!response.ok) throw new Error('Gagal mengambil data buku digital');
         const data = await response.json();
-        setBukuList(data); // Set fetched data to state
+        setBukuList(data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -33,76 +31,89 @@ const BukuDigital = () => {
     fetchBukuDigital();
   }, []);
 
-  const onDocumentLoadSuccess = ({ numPages }) => {
-    setNumPages(numPages); // Set the number of pages when the PDF loads successfully
-  };
+  const onDocumentLoadSuccess = ({ numPages }) => setNumPages(numPages);
 
   const openPDF = (filePath) => {
     const fullUrl = `http://116.206.212.234:4000${filePath.replace("handler/http", "")}`;
-    window.open(fullUrl, "_blank"); // Open PDF in a new tab
+    window.open(fullUrl, "_blank");
   };
 
   return (
-   
-      <div className="box-container p-4">
-        <h2 className="buku-digital-title">Buku Digital</h2>
-        {loading ? (
-          <div className="text-center">Loading...</div>
-        ) : error ? (
-          <div className="alert alert-danger" role="alert">Error: {error}</div>
-        ) : (
-          <div className="table-responsive">
-            <table className="table table-striped table-bordered">
-              <thead className="thead-dark">
-                <tr>
-                  <th>No</th>
-                  <th>Judul Buku</th>
-                  <th>Tahun</th>
-                  <th>OPD</th>
-                  <th>File</th>
-                </tr>
-              </thead>
-              <tbody>
-                {bukuList.map((buku, index) => (
-                  <tr key={`${buku.id_buku_digital}-${index}`}>
-                    <td>{index + 1}</td>
-                    <td>{buku.buku}</td>
-                    <td>{buku.tahun}</td>
-                    <td>{buku.nama_opd}</td>
-                    <td>
-                      <button onClick={() => openPDF(buku.file)} className="btn btn-primary">
-                        PDF
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+    <div className="container py-5">
+      <h2 className="text-center mb-4">📚 Buku Digital</h2>
 
-        {/* PDF Preview Section */}
-        {selectedBook && (
-          <div className="pdf-preview">
-            <h3>Pratinjau Buku</h3>
-            <button className="btn btn-secondary mb-3" onClick={() => setSelectedBook(null)}>
-              Tutup
-            </button>
-            <Document
-              file={selectedBook} // Use the constructed URL for the PDF
-              onLoadSuccess={onDocumentLoadSuccess}
-              onLoadError={(error) => {
-                console.error("Error loading document:", error);
-                setError("Gagal memuat dokumen.");
-              }}
-            >
-              {Array.from(new Array(numPages), (el, index) => (
-                <Page key={`page_${index + 1}`} pageNumber={index + 1} />
-              ))}
-            </Document>
+      {loading ? (
+        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "50vh" }}>
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
-        )}
-      </div>
+        </div>
+      ) : error ? (
+        <div className="alert alert-danger text-center" role="alert">
+          Error: {error}
+        </div>
+      ) : (
+        <div className="table-responsive shadow-sm">
+          <table className="table table-hover table-bordered">
+            <thead className="table-dark">
+              <tr>
+                <th>No</th>
+                <th>Judul Buku</th>
+                <th>Tahun</th>
+                <th>OPD</th>
+                <th>File</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bukuList.map((buku, index) => (
+                <tr key={`${buku.id_buku_digital}-${index}`}>
+                  <td>{index + 1}</td>
+                  <td>{buku.buku}</td>
+                  <td>{buku.tahun}</td>
+                  <td>{buku.nama_opd}</td>
+                  <td>
+                    <button 
+                      onClick={() => openPDF(buku.file)} 
+                      className="btn btn-outline-primary btn-sm"
+                    >
+                      Lihat PDF
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {/* Modal untuk pratinjau PDF */}
+      {selectedBook && (
+        <div className="modal show d-block" tabIndex="-1" role="dialog">
+          <div className="modal-dialog modal-lg" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Pratinjau Buku</h5>
+                <button type="button" className="btn-close" onClick={() => setSelectedBook(null)}></button>
+              </div>
+              <div className="modal-body">
+                <Document
+                  file={selectedBook}
+                  onLoadSuccess={onDocumentLoadSuccess}
+                  onLoadError={(error) => {
+                    console.error("Gagal memuat dokumen:", error);
+                    setError("Gagal memuat dokumen.");
+                  }}
+                >
+                  {Array.from(new Array(numPages), (el, index) => (
+                    <Page key={`page_${index + 1}`} pageNumber={index + 1} />
+                  ))}
+                </Document>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
