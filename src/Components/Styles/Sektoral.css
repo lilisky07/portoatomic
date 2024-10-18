@@ -1,124 +1,223 @@
-/* Container for the whole page */
 .sektoral-container {
   padding: 20px;
-  background-color: #f8f9fa;
-  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Box for form and title */
 .sektoral-box {
-  background-color: #ffffff;
-  padding: 20px;
-  margin-bottom: 20px;
+  background: white;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  padding: 25px;
+  margin-bottom: 30px;
 }
 
-/* Heading styling */
 .sektoral-title {
+  color: #ff9800;
   font-size: 24px;
-  color: #f9a825;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   text-align: left;
 }
 
-/* Form styling */
 .sektoral-form {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  position: relative;
 }
 
 .sektoral-input {
-  width: calc(25% - 10px);
-  padding: 10px;
-  border-radius: 4px;
-  border: 1px solid #ced4da;
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.sektoral-input:focus {
+  border-color: #ff9800;
+  box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.2);
+  outline: none;
+}
+
+.sektoral-input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
 }
 
 .sektoral-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
+  background: #007bff;
+  color: white;
   border: none;
-  border-radius: 4px;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 16px;
 }
 
 .sektoral-button:hover {
-  background-color: #0056b3;
+  background: #0056b3;
 }
 
-/* Table container */
+.search-info {
+  grid-column: 1/-1;
+  margin-top: 15px;
+}
+
+.search-info h6 {
+  color: #666;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Select dropdown styling */
+select.sektoral-input {
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+select.sektoral-input option {
+  padding: 8px 15px;
+}
+
+select.sektoral-input option:hover {
+  background-color: #f5f5f5;
+}
+
+/* Results table styling */
 .result-container {
-  background-color: #ffffff;
-  padding: 20px;
+  background: white;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  padding: 20px;
+  overflow-x: auto;
 }
 
-/* Table styling */
 .result-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .result-table th,
 .result-table td {
-  padding: 12px;
+  padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
 
 .result-table th {
-  background-color: #f9f9f9;
-  font-weight: bold;
+  background-color: #f8f9fa;
+  font-weight: 600;
 }
 
-.result-table tbody tr:nth-child(even) {
-  background-color: #f3f4f6;
+.result-table tr:hover {
+  background-color: #f8f9fa;
 }
 
-/* Hover effect on rows */
-.result-table tbody tr:hover {
-  background-color: #eaeaea;
-}
-
-/* Pagination controls styling */
+/* Pagination controls */
 .pagination-controls {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 20px;
   margin-top: 20px;
 }
 
 .pagination-controls button {
-  padding: 10px 15px;
-  margin: 0 5px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
+  padding: 8px 16px;
+  border: 1px solid #ddd;
   border-radius: 4px;
+  background: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.pagination-controls button:hover {
-  background-color: #0056b3;
+.pagination-controls button:hover:not(:disabled) {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
 }
 
 .pagination-controls button:disabled {
-  background-color: #6c757d;
+  background-color: #f5f5f5;
   cursor: not-allowed;
 }
 
 .pagination-controls span {
-  margin: 0 10px;
-  font-size: 1rem;
-  color: #343a40;
+  color: #666;
+}
+
+/* Loading and error states */
+.result-container p {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+/* ... Previous CSS styles remain the same ... */
+
+.dropdown-container {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.dropdown-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* Ensure proper z-index stacking */
+.sektoral-box {
+  position: relative;
+  z-index: 1;
+}
+
+/* Add smooth transitions */
+.dropdown-list {
+  transition: all 0.3s ease;
+}
+
+/* Style scrollbar for dropdown */
+.dropdown-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropdown-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.dropdown-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.dropdown-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

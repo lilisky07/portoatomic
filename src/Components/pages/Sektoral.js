@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Select from 'react-select'; // Import React-Select
 import "../Styles/Sektoral.css";
 
 const Sektoral = () => {
@@ -6,8 +7,8 @@ const Sektoral = () => {
   const [urusans, setDataUrusan] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedOPD, setSelectedOPD] = useState("");
-  const [selectedUrusan, setSelectedUrusan] = useState("");
+  const [selectedOPD, setSelectedOPD] = useState(null);
+  const [selectedUrusan, setSelectedUrusan] = useState(null);
   const [dariTahun, setDariTahun] = useState("");
   const [sampaiTahun, setSampaiTahun] = useState("");
   const [results, setResults] = useState([]);
@@ -16,39 +17,36 @@ const Sektoral = () => {
   const [totalData, setTotalData] = useState(0);
   const [resultsPerPage] = useState(20);
 
-  // Fetch data OPD
- 
-
   useEffect(() => {
     fetchDataOPD();
-  }, [currentPage]);
- const fetchDataOPD = async () => {
+  }, []);
+
+  const fetchDataOPD = async () => {
     try {
       const response = await fetch("http://116.206.212.234:4000/list-opd");
       if (!response.ok) throw new Error('Failed to fetch OPD data');
       const data = await response.json();
-      setDataOPD(data);
-   } catch (error) {
-     setError(error.message);
-   } finally {
-     setLoading(false);
-   }
- };
+      setDataOPD(data.map(opd => ({ value: opd.id_opd, label: opd.nama_opd })));
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const handleOPDChange = async (e) => {
-    const opdId = e.target.value;
-    setSelectedOPD(opdId);
-    setSelectedUrusan("");
-    setCurrentPage(1);
+  const handleOPDChange = async (selected) => {
+    setSelectedOPD(selected);
+    setSelectedUrusan(null);
     setLoading(true);
 
-    if (opdId) {
+    if (selected) {
       try {
-        const response = await fetch(`http://116.206.212.234:4000/data-sektoral/list-urusan-by-id-opd?id_user_opd=${opdId}`);
+        const response = await fetch(
+          `http://116.206.212.234:4000/data-sektoral/list-urusan-by-id-opd?id_user_opd=${selected.value}`
+        );
         if (!response.ok) throw new Error('Failed to fetch urusan');
         const data = await response.json();
-        setDataUrusan(data);
-        setError(null);
+        setDataUrusan(data.map(urusan => ({ value: urusan.kode_urusan, label: urusan.nama_urusan })));
       } catch (error) {
         setError("Gagal mengambil data urusan.");
       } finally {
@@ -60,13 +58,19 @@ const Sektoral = () => {
     }
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setCurrentPage(1);
+    fetchData(1);
+  };
+
   const fetchData = async (page = 1) => {
     setLoading(true);
     try {
       const baseUrl = 'http://116.206.212.234:4000/data-sektoral';
       const params = new URLSearchParams({
-        id_user_opd: selectedOPD,
-        kode_urusan: selectedUrusan,
+        id_user_opd: selectedOPD?.value || '',
+        kode_urusan: selectedUrusan?.value || '',
         dari_tahun: dariTahun,
         sampai_tahun: sampaiTahun,
         page: page.toString(),
@@ -77,15 +81,10 @@ const Sektoral = () => {
       if (!response.ok) throw new Error('Failed to fetch data');
 
       const data = await response.json();
-      console.log(`Page ${page} - Items received:`, data.length);  // Debugging line
-
       setResults(data);
 
       const totalItems = response.headers.get('x-pagination-total-count');
-      console.log('Total Items (from header):', totalItems);  // Debugging line
-
       setTotalData(totalItems ? parseInt(totalItems, 10) : 0);
-      setError(null);
     } catch (error) {
       setError("Terjadi kesalahan saat mengambil data.");
     } finally {
@@ -93,44 +92,37 @@ const Sektoral = () => {
     }
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setCurrentPage(1);
-    fetchData(1);
-  };
+  const totalPages = Math.ceil(totalData / resultsPerPage);
 
-  const handlePageChange = (newPage) => {
-    console.log(`Navigating to page: ${newPage}`);  // Debugging line
+const handlePageChange = (newPage) => {
+  if (newPage > 0 && newPage <= totalPages) {
     setCurrentPage(newPage);
     fetchData(newPage);
-  };
+  }
+};
 
-  const totalPages = Math.ceil(totalData / resultsPerPage);
-  
 
   return (
     <div className="sektoral-container">
       <div className="sektoral-box">
         <h2 className="sektoral-title">Data Sektoral</h2>
         <form className="sektoral-form" onSubmit={handleSearch}>
-          <select className="sektoral-input" onChange={handleOPDChange} value={selectedOPD}>
-            <option value="">Perangkat Daerah</option>
-            {opds.map((OPD) => (
-              <option key={OPD.id_opd} value={OPD.id_opd}>{OPD.nama_opd}</option>
-            ))}
-          </select>
+          <Select
+            options={opds}
+            onChange={handleOPDChange}
+            value={selectedOPD}
+            placeholder="Pilih Perangkat Daerah"
+            isClearable
+          />
 
-          <select
-            className="sektoral-input"
-            onChange={(e) => setSelectedUrusan(e.target.value)}
+          <Select
+            options={urusans}
+            onChange={(selected) => setSelectedUrusan(selected)}
             value={selectedUrusan}
-            disabled={!selectedOPD}
-          >
-            <option value="">Urusan Bidang</option>
-            {urusans.map((Urusan) => (
-              <option key={Urusan.kode_urusan} value={Urusan.kode_urusan}>{Urusan.nama_urusan}</option>
-            ))}
-          </select>
+            placeholder="Pilih Urusan Bidang"
+            isClearable
+            isDisabled={!selectedOPD}
+          />
 
           <input
             className="sektoral-input"
