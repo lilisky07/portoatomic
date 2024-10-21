@@ -26,6 +26,15 @@ const NavLinks = () => {
         </li>
         <li className="nav-item">
           <NavLink
+            to="/dataset"
+            className="nav-link"
+            activeClassName="active-link"
+          >
+            Dataset
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink
             to="/sektoral"
             className="nav-link"
             activeClassName="active-link"

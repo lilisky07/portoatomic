@@ -1,6 +1,9 @@
+import '../Styles/Button.css';
+
+
 const Button = ({ label, onClick }) => {
   return (
-    <button className="btn btn-dark mt-3" onClick={onClick}>
+    <button className="btn" onClick={onClick}>
       {label}
     </button>
   );
