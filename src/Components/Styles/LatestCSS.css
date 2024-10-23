@@ -24,11 +24,12 @@ background-color: white;
   margin: 1px; /* Reduced margin to make photos closer */
   padding: 5px;
   text-align: left;
+  
 }
 
 .work-image {
-  width: 395px;
-  height: 331px;
+  width: 335px;
+  height: 321px;
   object-fit: cover;
   margin-bottom: 20px;
 }

@@ -1,105 +1,355 @@
+/* Global styles and variables */
+:root {
+  --primary-color: #d32f2f;
+  --primary-light: #fde7e7;
+  --primary-hover: #b71c1c;
+  --text-primary: #333333;
+  --text-secondary: #757575;
+  --transition: all 0.3s ease;
+}
+
+/* Basic container styles */
 .app-container {
-    display: flex;
-    height: 100vh;
-    background-color: #f8f9fa;
-  }
-  
-  /* Sidebar Styles */
-  .sidebar {
-    width: 25%;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 90px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  .search-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .category-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .category-list li {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-weight: 500;
-  }
-  
-  .category-count {
-    background-color: #ffe0e0;
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 0.9rem;
-  }
-  
-  /* Dataset Table Styles */
-  .dataset-table-container {
-    width: 75%;
-    padding: 20px;
-    overflow-y: auto;
-    margin-top: 90px;
-  }
-  
-  .dataset-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  .dataset-table th, .dataset-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .dataset-table th {
-    background-color: #dc3545;
-    color: white;
-    font-weight: 600;
-  }
-  
-  .dataset-table td {
-    color: #333;
-  }
-  
-  .dataset-table a {
-    color: #dc3545;
-    text-decoration: none;
-  }
-  
-  .dataset-table tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .dataset-table tr:last-child td {
-    border-bottom: none;
-  }
-  
-  /* Loader Style */
-  .loader {
-    margin: auto;
-    font-size: 1.5rem;
-    color: #dc3545;
-  }
-  
+  display: flex;
+  padding: 24px;
+  gap: 30px;
+  max-width: 1440px;
+  margin: 0 auto;
+  background: #fafafa;
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 280px;
+  margin-top: 90px;
+  position: sticky;
+  top: 90px;
+  height: fit-content;
+}
+
+.sidebar input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 2px solid #eee;
+  margin-bottom: 16px;
+  font-size: 15px;
+  transition: var(--transition);
+}
+
+.sidebar input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+}
+
+.search-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: var(--transition);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 24px;
+}
+
+.category-item {
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--primary-light);
+  margin-bottom: 8px;
+  border-radius: 8px;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.category-item:hover {
+  background-color: #fcdbdb;
+  transform: translateX(4px);
+}
+
+.category-count {
+  background-color: var(--primary-color);
+  padding: 1px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Dataset card styles */
+.dataset-list {
+  flex: 1;
+  margin-top: 90px;
+}
+
+.dataset-header {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+  border-bottom: 2px solid #eee;
+  padding-bottom: 16px;
+}
+
+.dataset-card {
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: var(--transition);
+  border: 1px solid #eee;
+}
+
+.dataset-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dataset-opd {
+  color: var(--primary-color);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: left;
+
+}
+
+.dataset-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 8px 0;
+  color: var(--text-primary);
+  line-height: 1.4;
+  text-align: left;
+
+}
+
+.dataset-description {
+  color: var(--text-secondary);
+  margin: 12px 0;
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.dataset-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+.dataset-date,
+.dataset-viewed {
+  font-size: 14px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dataset-detail-btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.dataset-detail-btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(211, 47, 47, 0.2);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  color: #666;
+  transition: var(--transition);
+}
+
+.modal-close:hover {
+  color: var(--primary-color);
+  transform: rotate(90deg);
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #eee;
+  text-align: left;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detail-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.detail-group label {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.detail-group p {
+  margin: 0;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.download-btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  margin-top: 16px;
+  transition: var(--transition);
+}
+
+.download-btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
+}
+
+/* Loader Styles */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 16px;
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 4px solid var(--primary-color);
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Pagination Styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 32px;
+  gap: 16px;
+}
+
+.pagination-btn {
+  background-color: white;
+  border: 1px solid #eee;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: var(--primary-light);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* Active Category Style */
+.category-item.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.category-item.active .category-count {
+  background-color: white;
+  color: var(--primary-color);
+}
