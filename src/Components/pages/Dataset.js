@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../Styles/Dataset.css';
+import { useNavigate } from 'react-router-dom';
 
 // Main Dataset Component
 const Dataset = () => {
@@ -12,83 +13,98 @@ const Dataset = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const datasetsPerPage = 10;
 
-// Modal Component
-const DetailModal = ({ dataset, onClose }) => {
-  const [detail, setDetail] = useState(null);
-  const [loading, setLoading] = useState(true);
+// // Modal Component
+// const DetailModal = ({ dataset, onClose }) => {
+//   const [detail, setDetail] = useState(null);
+//   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchDetail = async () => {
-      try {
-        const response = await fetch(`http://116.206.212.234:4000/dataset/detail/${dataset.id}`);
-        const data = await response.json();
-        setDetail(data);
-      } catch (error) {
-        console.error('Error fetching detail:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+//   useEffect(() => {
+//     const fetchDetail = async () => {
+//       try {
+//         const response = await fetch(`http://116.206.212.234:4000/dataset/detail/${dataset.id}`);
+//         const data = await response.json();
+//         setDetail(data);
+//       } catch (error) {
+//         console.error('Error fetching detail:', error);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
 
-    if (dataset) {
-      fetchDetail();
-    }
-  }, [dataset]);
+//     if (dataset) {
+//       fetchDetail();
+//     }
+//   }, [dataset]);
 
-  if (!dataset) return null;
+//   if (!dataset) return null;
 
-  return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
-        {loading ? (
-          <div className="modal-loader">Loading...</div>
-        ) : (
-          <>
-            <button className="modal-close" onClick={onClose}>×</button>
-            <h2 className="modal-title">{dataset.uraian_dssd}</h2>
-            <div className="modal-body">
-              <div className="detail-group">
-                <label>OPD</label>
-                <p>{dataset.nama_opd}</p>
-              </div>
-              <div className="detail-group">
-                <label>Deskripsi</label>
-                <p>{dataset.description}</p>
-              </div>
-              <div className="detail-group">
-                <label>Format Data</label>
-                <p>{detail?.format || 'N/A'}</p>
-              </div>
-              <div className="detail-group">
-                <label>Terakhir Diperbarui</label>
-                <p>{new Date(dataset.modified).toLocaleDateString('id-ID', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}</p>
-              </div>
-              {/* <div className="detail-group">
-                <label>Jumlah Views</label>
-                <p>{dataset.jumlah} kali</p>
-              </div> */}
-              {detail?.url && (
-                <a 
-                  href={detail.url}
-                  className="download-btn"
-                  target="_blank"
-                  rel="noopener noreferrer" 
-                  style={{ display: 'block', color: 'blue' }} 
-                >
-                  Download Dataset
-                </a>
-              )}
-            </div>
-          </>
-        )}
-      </div>
-    </div>
-  );
-};
+//   return (
+//     <div className="modal-overlay" onClick={onClose}>
+//       <div className="modal-content" onClick={e => e.stopPropagation()}>
+//         {loading ? (
+//           <div className="modal-loader">Loading...</div>
+//         ) : (
+//           <>
+//             <button className="modal-close" onClick={onClose}>×</button>
+//             <h2 className="modal-title">{dataset.uraian_dssd}</h2>
+//             <div className="modal-body">
+//               <div className="detail-group">
+//                 <label>OPD</label>
+//                 <p>{dataset.nama_opd}</p>
+//               </div>
+
+//               <div className="detail-group">
+//                 <label>Judul Dataset</label>
+//                 <p>{dataset.uraian_dssd}</p>
+//               </div>
+
+//               <div className="detail-group">
+//                 <label>Jenis Data</label>
+//                 <p>{detail.jenis_string}</p>
+//               </div>
+              
+//               <div className="detail-group">
+//                   <label>Kategori Data</label>
+//                   <p>{detail.kategori_string}</p>
+//                 </div>
+
+//               <div className="detail-group">
+//                 <label>Deskripsi</label>
+//                 <p>{dataset.description}</p>
+//               </div>
+
+//               <div className="detail-group">
+//                 <label>Format Data</label>
+//                 <p>{detail?.format || 'N/A'}</p>
+//               </div>
+
+//               <div className="detail-group">
+//                 <label>Terakhir Diperbarui</label>
+//                 <p>{new Date(dataset.modified).toLocaleDateString('id-ID', {
+//                   year: 'numeric',
+//                   month: 'long',
+//                   day: 'numeric'
+//                 })}</p>
+//               </div>
+//               { detail.download_url && (
+//                 <a 
+//                   href={detail.download_url}
+//                   className="download-btn"
+//                   target="_blank"
+//                   rel="noopener noreferrer" 
+//                   style={{ display: 'block'}} 
+//                 >
+//                   Download Dataset
+//                 </a>
+                
+//               )}
+//             </div>
+//           </>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
 
 
 
@@ -144,17 +160,14 @@ const DetailModal = ({ dataset, onClose }) => {
     setCurrentPage(1);
   };
 
+  const navigate = useNavigate();
+
   const handleDetailClick = (dataset) => {
-    setSelectedDataset(dataset);
-    // Increment view count
-    fetch(`http://116.206.212.234:4000/dataset/increment-view/${dataset.id}`, {
-      method: 'POST'
-    }).catch(error => console.error('Error incrementing view:', error));
+    navigate(`/detail/${dataset.id}`);
   };
 
   const filteredDatasets = datasets.filter(dataset => {
-    const matchesSearch = dataset.uraian_dssd.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         dataset.nama_opd.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = dataset.uraian_dssd.toLowerCase().includes(searchTerm.toLowerCase()) ||dataset.nama_opd.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory ? dataset.nama_opd === selectedCategory : true;
     return matchesSearch && matchesCategory;
   });
@@ -174,6 +187,7 @@ const DetailModal = ({ dataset, onClose }) => {
 
   return (
     <div className="app-container">
+      
       {/* Sidebar */}
       <div className="sidebar">
         <input
@@ -207,9 +221,7 @@ const DetailModal = ({ dataset, onClose }) => {
           <div key={index} className="dataset-card">
             <div className="dataset-opd">{dataset.nama_opd}</div>
             <div className="dataset-title">{dataset.uraian_dssd}</div>
-            <div className="dataset-description">
-              {dataset.description}
-            </div>
+            <div className="dataset-description">{dataset.description}</div>
             <div className="dataset-footer">
               <div className="dataset-date">
                 {new Date(dataset.modified).toLocaleDateString('id-ID', {
@@ -218,7 +230,7 @@ const DetailModal = ({ dataset, onClose }) => {
                   day: 'numeric'
                 })}
               </div>
-              <div className="dataset-viewed">Telah dilihat {dataset.jumlah} kali</div>
+              {/* <div className="dataset-viewed">Telah dilihat {dataset.jumlah} kali</div> */}
               <button 
                 className="dataset-detail-btn"
                 onClick={() => handleDetailClick(dataset)}
@@ -253,13 +265,13 @@ const DetailModal = ({ dataset, onClose }) => {
         )}
       </div>
 
-      {/* Detail Modal */}
+      {/* Detail Modal
       {selectedDataset && (
         <DetailModal 
           dataset={selectedDataset} 
           onClose={() => setSelectedDataset(null)}
         />
-      )}
+      )} */}
     </div>
   );
 };

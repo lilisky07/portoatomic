@@ -1,20 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import '../Styles/NotFoundPage.css';
+import Spline from '@splinetool/react-spline';
 
-function NotFoundPage() {
+const Getin = () => {
   return (
-    <div className="not-found-container">
-      <div className="not-found-content">
-        <h1>Error 404</h1>
-        <p>Page NOT FOUND</p>
-        <Link to="/" className="home-button">Back to Home</Link>
-      </div>
-      <div className="not-found-image">
-        <img src="./Group.png" alt="Person with megaphone" />
-      </div>
-    </div>
+    
+      <Spline scene="https://prod.spline.design/yuNYEKr4rQqTgcss/scene.splinecode" />
+   
   );
-}
+};
 
-export default NotFoundPage;
+export default Getin;

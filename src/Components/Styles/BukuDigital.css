@@ -1,56 +1,76 @@
+/* Spacing between title and form */
 .sektoral-box {
-  margin-top: 70px; /* Spacing between title and form */
+  margin-top: 70px;
 }
 
-.container py-5 {
-  margin-top: 500px;
-}
+/* Adjusting section spacing */
 
+
+/* Centered text with smooth font appearance */
 .text-center {
   margin-top: 50px;
   text-align: center;
-  margin-bottom: 30px ;
-  font-size: 2rem;
-  font-weight: bold;
+  margin-bottom: 30px;
+  font-size: 2.5rem; /* Slightly larger font */
+  font-weight: 700; /* Make it bold but smoother */
+  color: #dc3545; /* Red tone */
+  letter-spacing: 0.5px; /* Add a bit of space between letters */
 }
 
+/* Table styling with rounded corners and shadow for depth */
 .table {
-  border-radius: 20px; /* Rounded corners */
+  border-radius: 12px; /* Smooth the corners */
   overflow: hidden; /* Ensure the corners are rounded */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05); /* Softer, lighter shadow */
+  transition: transform 0.3s ease; /* Add a subtle zoom effect */
 }
 
+
+/* Header with modern color and text appearance */
+.table thead th {
+  background-color: #dc3545; /* Softer red shade */
+  color: white;
+  text-transform: uppercase; /* Make the text uppercase */
+  letter-spacing: 1px; /* Space out the letters */
+  font-weight: 600; /* Make header text slightly bolder */
+}
+
+/* Centering content and modern hover effect */
 .table th,
 .table td {
-  vertical-align: center; /* Center content vertically */
+  vertical-align: middle; /* Center content vertically */
+  padding: 15px 10px; /* Add padding for better spacing */
 }
 
-.table thead th {
-  background-color: #dc3545; /* Dark background for the header */
-  color: white; /* White text for the header */
-}
-
+/* Smooth row hover effect */
 .table tbody tr {
-  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  transition: background-color 0.4s ease, transform 0.2s ease; /* Smooth hover effects */
 }
 
 .table tbody tr:hover {
-  background-color: #f8f9fa; /* Light background on hover */
+  background-color: #f1f3f5; /* Light grey on hover */
+  transform: translateY(-3px); /* Subtle lifting effect on hover */
 }
 
+/* Modern button styling */
 .pdf-button {
-  border-radius: 50px; /* Elliptical button */
-  padding: 10px 20px; /* Padding for the button */
-  color: white; /* White text */
-  background-color: #007bff; /* Bootstrap primary color */
-  border: none; /* Remove border */
-  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  border-radius: 30px; /* Smoother button */
+  padding: 12px 25px; /* More padding for a better feel */
+  color: white;
+  background-color: #007bff; /* Keep primary color */
+  border: none;
+  font-size: 1rem; /* Slightly larger text for better readability */
+  font-weight: 500; /* Medium font weight */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth color and transform transition */
 }
 
 .pdf-button:hover {
   background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight hover effect */
 }
 
-.text-center{
-  color: #dc3545;
+/* Making sure the text color is modern */
+.text-center {
+  color: #dc3545; /* Keep the color consistent */
 }
