@@ -32,7 +32,7 @@
 }
 
 .custom-navbar .nav-link:hover {
-  border-bottom: 2px solid #2D2D2D; /* Garis bawah saat hover */
+  border-bottom: 2px solid #dc3545; /* Garis bawah saat hover */
 }
 
 .custom-nav {
