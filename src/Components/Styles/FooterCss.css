@@ -1,75 +1,96 @@
+:root {
+  --primary-color: #d32f2f;
+  --primary-light: #fde7e7;
+  --primary-hover: #b71c1c;
+  --text-primary: #333333;
+  --text-secondary: #757575;
+  --transition: all 0.3s ease;
+}
+
+
 .custom-footer {
-    background-color: #ffffff; /* Light background */
-    padding: 40px 0;
-  }
-  
-  .footer-title {
-    font-size: 29px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    text-align: left;
-    font-weight: bold;
-  }
-  
-  .footer-description {
-    font-size: 20px;
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  .social-icons {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .social-icon i {
-    font-size: 20px;
-    color: #333;
-    transition: color 0.3s;
-  }
-  
-  .social-icon:hover i {
-    color: #007bff; /* Change color on hover */
-  }
-  
-  .footer-right .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .footer-form .form-control {
-    border-radius: 0;
-    border: 1px solid #ced4da;
-    padding: 10px;
-    background-color: #e8e8e8;
-  }
-  
-  .footer-form .btn {
-    background-color: #252526;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 500;
-    cursor: pointer;
-  }
-  
-  .footer-form .btn:hover {
-    background-color: #666666; /* Darken button on hover */
-  }
-  
+  background-color: #f9f9f9; /* Background abu terang */
+  padding: 60px 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sedikit shadow */
+}
+
+.footer-title {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: left;
+  color: #252526;
+}
+
+.footer-description {
+  font-size: 18px;
+  margin-bottom: 25px;
+  text-align: left;
+  color: #6c757d;
+  line-height: 1.6; /* Lebih nyaman untuk dibaca */
+}
+
+.social-icons {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.social-icon i {
+  font-size: 24px;
+  color: #555;
+  transition: color 0.4s ease, transform 0.4s ease;
+}
+
+.social-icon:hover i {
+  color: #007bff; /* Warna biru yang lebih halus */
+  transform: translateY(-3px); /* Sedikit efek floating */
+}
+
+.footer-right .form-group {
+  margin-bottom: 20px;
+}
+
+.footer-form .form-control {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  padding: 12px;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-form .form-control:focus {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.1); /* Shadow pada fokus */
+}
+
+.footer-form .btn {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-form .btn:hover {
+  background-color: var(--primary-hover); /* Biru lebih gelap saat di-hover */
+  transform: scale(1.05); /* Sedikit efek zoom */
+}
+
+.footer-left,
+.footer-right {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
   .footer-left,
   .footer-right {
-    margin-bottom: 20px;
+    text-align: center;
   }
-  
-  @media (max-width: 768px) {
-    .footer-left,
-    .footer-right {
-      text-align: center;
-    }
-  
-    .footer-right {
-      margin-top: 20px;
-    }
-    
+
+  .footer-right {
+    margin-top: 30px;
   }
-  
+}

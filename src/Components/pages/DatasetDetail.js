@@ -11,10 +11,11 @@ const DatasetDetail = () => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('Tabel'); // State untuk menentukan tab yang aktif
 
+  //detail
   useEffect(() => {
     const fetchDetail = async () => {
       try {
-        const response = await fetch(`http://116.206.212.234:4000/dataset/detail/${id}`);
+        const response = await fetch(`http://116.206.212.234:4000/dataset/detail/${id}`); //detail
         const data = await response.json();
         setDetail(data);
       } catch (error) {
@@ -30,44 +31,56 @@ const DatasetDetail = () => {
 
 
 
-    // tombol downloaaad 
-    const handleDownload = () => {
-      if (detail?.download_url) {
-        const downloadUrl = `http://${detail.download_url}`; // Pastikan untuk menambahkan 'http://' ke URL
-        const a = document.createElement('a');
-        a.href = downloadUrl;
-        a.download = `${detail?.uraian_dssd}.xlsx`; // Nama file berdasarkan detail dataset
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      } else {
-        console.error('Download URL tidak tersedia');
-      }
-    };
-    
-    
+  // Tombol download 
+  const handleDownload = () => {
+    if (detail?.download_url) {
+      const downloadUrl = `http://${detail.download_url}`; // Pastikan untuk menambahkan 'http://' ke URL
+      const a = document.createElement('a');
+      a.href = downloadUrl;
+      a.download = `${detail?.uraian_dssd}.xlsx`; // Nama file berdasarkan detail dataset
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } else {
+      console.error('Download URL tidak tersedia');
+    }
+  };
 
 
 
-  // Data untuk grafik Line dan Bar
-  const chartData = {
-    labels: ['2023', '2024'],
+  // Data grafik Line dan Bar
+  const inputData = detail?.input || [];
+  
+  // Mengurutkan data berdasarkan tahun secara ascending
+  const sortedData = inputData.sort((a, b) => a.tahun - b.tahun);
+
+  const labels = sortedData.map(item => item.tahun); // Ambil tahun dari input yang sudah diurutkan
+  const dataValues = sortedData.map(item => item.jumlah); // Ambil jumlah dari input yang sudah diurutkan
+
+  const barChartData = {
+    labels: labels,
+    datasets: [
+      {
+        label: 'Dataset Bar',
+        data: dataValues,
+        backgroundColor: 'rgba(211, 47, 47, 1)',
+      },
+    ],
+  };
+  
+  const lineChartData = {
+    labels: labels,
     datasets: [
       {
         label: 'Dataset Line',
-        data: [detail?.jumlah, detail?.jumlah - 500000], // Contoh data
-        borderColor: 'rgba(75, 192, 192, 1)',
+        data: dataValues,
+        borderColor: 'rgba(211, 47, 47, 1)',
         fill: false,
-      },
-      {
-        label: 'Dataset Bar',
-        data: [detail?.jumlah, detail?.jumlah - 500000], // Contoh data
-        backgroundColor: ['rgba(54, 162, 235, 0.6)', 'rgba(75, 192, 192, 0.6)'],
       },
     ],
   };
 
-  //duaa kolooom
+  // Dua kolom
   return (
     <div className="dataset-container">
       <div className="content-wrapper">
@@ -81,11 +94,11 @@ const DatasetDetail = () => {
           <div className="metadata">
             <div className="metadata-item">
               <span className="metadata-icon">🏢</span>
-              <span>{detail?.nama_opd}</span>
+              <span className="metadata-text">{detail?.nama_opd}</span> 
             </div>
             <div className="metadata-item">
               <span className="metadata-icon">📅</span>
-              <span>{new Date(detail?.modified).toLocaleDateString('id-ID',{
+              <span className="metadata-text">{new Date(detail?.modified).toLocaleDateString('id-ID',{
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric'
@@ -103,9 +116,9 @@ const DatasetDetail = () => {
         {/* Kolom Kanan: Tabel dan Ekspor */}
         <div className="right-column">
           <div className="action-tabs">
-            <button className={`tab ${activeTab === 'Tabel' ? 'active' : ''}`} onClick={() => setActiveTab('Tabel')}>Tabel</button>
-            <button className={`tab ${activeTab === 'Grafik' ? 'active' : ''}`} onClick={() => setActiveTab('Grafik')}>Grafik</button>
-            <button className={`tab ${activeTab === 'Metadata' ? 'active' : ''}`} onClick={() => setActiveTab('Metadata')}>Metadata</button>
+            <button className={`export-btn ${activeTab === 'Tabel' ? 'active' : ''}`} onClick={() => setActiveTab('Tabel')}>Tabel</button>
+            <button className={`export-btn ${activeTab === 'Grafik' ? 'active' : ''}`} onClick={() => setActiveTab('Grafik')}>Grafik</button>
+            <button className={`export-btn ${activeTab === 'Metadata' ? 'active' : ''}`} onClick={() => setActiveTab('Metadata')}>Jumlah Data Sektoral & Api </button>
           </div>
 
           <div className="export-buttons">
@@ -149,27 +162,68 @@ const DatasetDetail = () => {
                   <td>Satuan</td>
                   <td>{detail?.satuan || '-'}</td>
                 </tr>
-                <tr>
-                </tr>
               </tbody>
             </table>
           )}
 
+
+          {/* grafik */}
           {activeTab === 'Grafik' && (
             <div>
-              <h3>Representasi Dalam Grafik Line</h3>
-              <Line data={chartData} />
               <h3>Representasi Dalam Grafik Bar</h3>
-              <Bar data={chartData} />
+              <Bar data={barChartData} />
+              <h3>Representasi Dalam Grafik Line</h3>
+              <Line data={lineChartData} />
             </div>
           )}
           
+          {/* tabel */}
           {activeTab === 'Metadata' && (
-            <div className="metadata-content">
-              <h3>Metadata Detail</h3>
-              <p>Informasi lebih detail tentang metadata dataset.</p>
-              {/* Isi Metadata */}
-            </div>
+           <div className="data-container">
+           {/* Tabel Jumlah Data Sektoral */}
+           <table className="data-table">
+             <thead>
+               <tr>
+                 <th>Tahun</th>
+                 <th>Jumlah</th>
+               </tr>
+             </thead>
+             <tbody>
+               {detail?.input?.map((item, index) => (
+                 <tr key={index}>
+                   <td>{item.tahun}</td> {/* Tampilkan tahun dari input */}
+                   <td>{item.jumlah}</td> {/* Tampilkan jumlah dari input */}
+                 </tr>
+               ))}
+             </tbody>
+           </table>
+         
+           {/* Tabel API Interoperabilitas */}
+           <table className="data-table">
+             <thead>
+               <tr>
+                 <th>Method</th>
+                 <th>API</th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr>
+                 <td>GET</td> {/* Tampilkan method (statis) */}
+                 <td>
+                   <a
+                     href={`http://116.206.212.234:4000/dataset/detail/${id}`}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                   >
+                     <button className="export-btn">Open API</button>
+                   </a>
+                 </td>
+               </tr>
+             </tbody>
+           </table>
+         </div>
+         
+       
           )}
         </div>
       </div>

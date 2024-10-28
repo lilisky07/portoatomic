@@ -3,14 +3,14 @@ import Title from '../atoms/Title'; // Import your Title atom
 import Description from '../atoms/Description'; // Import your Description atom
 import '../Styles/TestimonialCss.css'; // Ensure appropriate CSS is imported
 
-const TestimonialCard = ({ text, name, rating, image }) => {
+const TestimonialCard = ({ text, name, rating, img }) => {
   return (
     <div className="testimonial-card">
       <div className="testimonial-text">
         <Description text={text} className="testimonial-description" />
       </div>
       <div className="testimonial-info">
-        <img src={image} alt={`${name}'s photo`} className="testimonial-photo" />
+        <img src={img} alt={name} className="testimonial-photo" /> {/* Perbaiki alt */}
         <div className="testimonial-details">
           <div className="testimonial-rating">
             {'★'.repeat(rating)} {/* Displays stars based on rating */}

@@ -9,7 +9,7 @@ const Dataset = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedDataset, setSelectedDataset] = useState(null);
+  // const [selectedDataset, setSelectedDataset] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const datasetsPerPage = 10;
 
@@ -264,14 +264,6 @@ const Dataset = () => {
           </div>
         )}
       </div>
-
-      {/* Detail Modal
-      {selectedDataset && (
-        <DetailModal 
-          dataset={selectedDataset} 
-          onClose={() => setSelectedDataset(null)}
-        />
-      )} */}
     </div>
   );
 };
